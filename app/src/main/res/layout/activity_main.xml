@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="A011996333E"
+        android:textStyle="bold"
         android:layout_margin="@dimen/_5sdp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +78,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/paymentOfTaxes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_25sdp"
