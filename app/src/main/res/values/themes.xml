@@ -3,7 +3,6 @@
     <style name="Base.Theme.MiniPRN" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/red</item>
-        <item name="colorOnSurface">@color/red</item>
     </style>
 
     <style name="Theme.MiniPRN" parent="Base.Theme.MiniPRN" />
