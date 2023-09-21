@@ -41,4 +41,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     //layout sizing dependency for different screen sizes
     implementation("com.intuit.sdp:sdp-android:1.1.0")
+    //qr code scanner dependency
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
 }
