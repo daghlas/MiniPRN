@@ -3,6 +3,7 @@ package com.daghlas.miniprn;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +25,8 @@ public class QRCode extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
+
+        getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.red));
 
         back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
