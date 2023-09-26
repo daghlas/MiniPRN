@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -59,8 +60,7 @@ public class QRCode extends AppCompatActivity {
             builder.setPositiveButton("PAY", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(QRCode.this, Receipt.class);
-                    startActivity(intent);
+                    Toast.makeText(QRCode.this, "Payment STK PUSH now", Toast.LENGTH_SHORT).show();
                 }
             });
             builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
