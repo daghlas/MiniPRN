@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,14 +53,16 @@ public class QRCode extends AppCompatActivity {
     ActivityResultLauncher <ScanOptions> barLaunch = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents() != null){
             AlertDialog.Builder builder = new AlertDialog.Builder(QRCode.this);
-            builder.setTitle("Scan result");
+            builder.setCancelable(false);
+            builder.setTitle("Pay with QR Code");
             builder.setMessage(result.getContents());
             builder.setPositiveButton("PAY", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+                    Intent intent = new Intent(QRCode.this, Receipt.class);
+                    startActivity(intent);
                 }
-            }).show();
+            });
             builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
