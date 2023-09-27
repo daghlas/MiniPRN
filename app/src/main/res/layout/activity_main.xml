@@ -14,6 +14,7 @@
         android:layout_marginTop="@dimen/_80sdp"
         android:textSize="@dimen/_20sdp"
         android:textColor="@color/red"
+        android:fontFamily="@font/croissant_one_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
