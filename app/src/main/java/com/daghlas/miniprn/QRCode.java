@@ -63,7 +63,19 @@ public class QRCode extends AppCompatActivity {
             builder.setPositiveButton("PAY", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(QRCode.this, "Payment STK PUSH now", Toast.LENGTH_SHORT).show();
+                    //capture receipt details from QR code scanned
+                    String path = result.getContents();
+                    String[] split = path.split(" ");
+                    String amount = split[5];
+                    String payBill = "572572";
+                    String reference = split[11];
+
+                    //Keep and post to next activity
+                    Intent intent = new Intent(QRCode.this, QRPay.class);
+                    intent.putExtra("amount", amount);
+                    intent.putExtra("payBill", payBill);
+                    intent.putExtra("reference", reference);
+                    startActivity(intent);
                 }
             });
             builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
