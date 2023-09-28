@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Receipt Activity"
         android:textColor="@color/red"
+        android:fontFamily="@font/croissant_one_regular"
         android:textSize="@dimen/_30sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
