@@ -55,7 +55,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="100dp"
         android:text="Scan QR code"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
@@ -78,13 +78,15 @@
         android:id="@+id/scanQR"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_30sdp"
         android:text="SCAN"
         android:textColor="@color/white"
-        android:layout_marginHorizontal="@dimen/_40sdp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
