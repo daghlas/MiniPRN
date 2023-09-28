@@ -61,9 +61,7 @@ public class QRPay extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validatePhoneNumber()){
-                    Toast.makeText(QRPay.this, "Validation failed", Toast.LENGTH_SHORT).show();
-                }else{
+                if(validatePhoneNumber()){
                     Toast.makeText(QRPay.this, "Validation Successful", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -72,10 +70,10 @@ public class QRPay extends AppCompatActivity {
     private boolean validatePhoneNumber() {
         String val = phone.getText().toString();
         if (val.isEmpty()) {
-            phone.setError("Enter phone number");
+            phone.setError("enter phone number");
             return false;
         } else if (val.length() != 10) {
-            phone.setError("Enter valid admission no.");
+            phone.setError("invalid phone no.");
             return false;
         }else {
             phone.setError(null);
