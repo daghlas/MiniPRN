@@ -48,7 +48,7 @@ public class QRPay extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle != null){
+        if (bundle != null) {
             String amountExtra = bundle.getString("amount");
             String payBillExtra = bundle.getString("payBill");
             String referenceExtra = bundle.getString("reference");
@@ -61,12 +61,13 @@ public class QRPay extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validatePhoneNumber()){
+                if (validatePhoneNumber()) {
                     Toast.makeText(QRPay.this, "Validation Successful", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
     private boolean validatePhoneNumber() {
         String val = phone.getText().toString();
         if (val.isEmpty()) {
@@ -75,9 +76,44 @@ public class QRPay extends AppCompatActivity {
         } else if (val.length() != 10) {
             phone.setError("invalid phone no.");
             return false;
-        }else {
+        } else {
             phone.setError(null);
             return true;
         }
     }
+
+    /** to be honest i wasn't sure what i was doing this first time brother -- start
+    /*
+    private void stkPush() {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        MediaType mediaType = MediaType.parse("application/json");
+
+        RequestBody body = RequestBody.create(mediaType, {
+                "Initiator":testapi,
+                "SecurityCredential":"ciJVgmrcEhWkfjagc7HsnGZ9/Gobz9tg7hIr/jxkSseatA8apVOv/xNdEATOxSquStHKCMd/VsM+Y7cTTIb0pVwSNEegWPjQjt7LYnrrXtyfrw95f5BGTInmXHR6YExRFp09++vSAoiN3n+SUrFzv6y6wHiRyr1G2aP0F/l1FUOHqwphY/31y+FedWegsbqzluMZxUj+G4rwUTjrpXEGRmwrPIErzbLu9CoivDNyDx7lB+SAatKATiW1WDY6zOhAPIN5puFslMq54beD0wb45jTxoZKodKDxClYQjRxy22XEgNSzNXOHKQMmUlbSLcvDpOr1j2wMw+bFqZ573uRiUw==",
+                "CommandID":"PayTaxToKRA",
+                "SenderIdentifierType":"4",
+                "RecieverIdentifierType":4,
+                "Amount":amount.getText(),
+                "PartyA":phone.getText(),
+                "PartyB":572572,
+                "AccountReference":accountNo.getText(),
+                "Remarks":"ok",
+                "QueueTimeOutURL":"https://mydomain.com/b2b/queue/"
+        "ResultURL":"https://mydomain.com/b2b/result/"
+        });
+
+        Request request = new Request.Builder()
+                .url("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/remittax")
+                .method("POST", body)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer rS93NlmGuXKk8hVRrDsQlVWVXyZZ")
+                .build();
+        Response response = client.newCall(request).execute()
+    }
+
+     i wasn't sure what i was doing this first time brother -- close
+     *
+     */
+
 }
