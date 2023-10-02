@@ -1,23 +1,41 @@
 package com.daghlas.miniprn;
 
+import static com.daghlas.miniprn.Constants.BUSINESS_SHORT_CODE;
+import static com.daghlas.miniprn.Constants.CALLBACKURL;
+import static com.daghlas.miniprn.Constants.PARTYB;
+import static com.daghlas.miniprn.Constants.PASSKEY;
+import static com.daghlas.miniprn.Constants.TRANSACTION_TYPE;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.daghlas.miniprn.Model.AccessToken;
+import com.daghlas.miniprn.Model.STKPush;
+import com.daghlas.miniprn.Services.DarajaApiClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import timber.log.Timber;
+
 public class QRPay extends AppCompatActivity {
 
     ImageView back;
     EditText amount, payBill, accountNo, phone;
     Button proceed;
+    //mpesa STKPush
+    private DarajaApiClient mApiClient;
+    private ProgressDialog mProgressDialog;
 
 
     @Override
@@ -25,6 +43,11 @@ public class QRPay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrpay);
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.red));
+
+        //mpesa STKPush
+        mProgressDialog = new ProgressDialog(this);
+        mApiClient = new DarajaApiClient();
+        mApiClient.setIsDebug(true); //Set True to enable logging, false to disable.
 
         proceed = findViewById(R.id.proceed);
         back = findViewById(R.id.backButton);
@@ -62,10 +85,16 @@ public class QRPay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validatePhoneNumber()) {
-                    Toast.makeText(QRPay.this, "Validation Successful", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(QRPay.this, "Payment Successful", Toast.LENGTH_SHORT).show();
+                    String phone_number = phone.getText().toString();
+                    String pay_amount = amount.getText().toString();
+                    performSTKPush(phone_number,pay_amount);
                 }
             }
         });
+
+        //token method call
+        getAccessToken();
     }
 
     private boolean validatePhoneNumber() {
@@ -82,38 +111,67 @@ public class QRPay extends AppCompatActivity {
         }
     }
 
-    /** to be honest i wasn't sure what i was doing this first time brother -- start
-    /*
-    private void stkPush() {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-        MediaType mediaType = MediaType.parse("application/json");
+    public void getAccessToken() {
+        mApiClient.setGetAccessToken(true);
+        mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
+            @Override
+            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
+                if (response.isSuccessful()) {
+                    mApiClient.setAuthToken(response.body().accessToken);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
 
-        RequestBody body = RequestBody.create(mediaType, {
-                "Initiator":testapi,
-                "SecurityCredential":"ciJVgmrcEhWkfjagc7HsnGZ9/Gobz9tg7hIr/jxkSseatA8apVOv/xNdEATOxSquStHKCMd/VsM+Y7cTTIb0pVwSNEegWPjQjt7LYnrrXtyfrw95f5BGTInmXHR6YExRFp09++vSAoiN3n+SUrFzv6y6wHiRyr1G2aP0F/l1FUOHqwphY/31y+FedWegsbqzluMZxUj+G4rwUTjrpXEGRmwrPIErzbLu9CoivDNyDx7lB+SAatKATiW1WDY6zOhAPIN5puFslMq54beD0wb45jTxoZKodKDxClYQjRxy22XEgNSzNXOHKQMmUlbSLcvDpOr1j2wMw+bFqZ573uRiUw==",
-                "CommandID":"PayTaxToKRA",
-                "SenderIdentifierType":"4",
-                "RecieverIdentifierType":4,
-                "Amount":amount.getText(),
-                "PartyA":phone.getText(),
-                "PartyB":572572,
-                "AccountReference":accountNo.getText(),
-                "Remarks":"ok",
-                "QueueTimeOutURL":"https://mydomain.com/b2b/queue/"
-        "ResultURL":"https://mydomain.com/b2b/result/"
+            }
         });
-
-        Request request = new Request.Builder()
-                .url("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/remittax")
-                .method("POST", body)
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Bearer rS93NlmGuXKk8hVRrDsQlVWVXyZZ")
-                .build();
-        Response response = client.newCall(request).execute()
     }
 
-     i wasn't sure what i was doing this first time brother -- close
-     *
-     */
+    public void performSTKPush(String phone_number,String pay_amount) {
+        mProgressDialog.setMessage("Processing your request");
+        mProgressDialog.setTitle("Please Wait...");
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
+        String timestamp = Utils.getTimestamp();
+        STKPush stkPush = new STKPush(
+                BUSINESS_SHORT_CODE,
+                Utils.getPassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp),
+                timestamp,
+                TRANSACTION_TYPE,
+                String.valueOf(pay_amount),
+                Utils.sanitizePhoneNumber(phone_number),
+                PARTYB,
+                Utils.sanitizePhoneNumber(phone_number),
+                CALLBACKURL,
+                accountNo.getText().toString(), //Payment Reference Number as Account reference
+                "PRN Payment STK PUSH by Daghlas Kenyatta" //Transaction description
+        );
 
+        mApiClient.setGetAccessToken(false);
+        //Sending the data to the Mpesa API, remember to remove the logging when in production.
+        mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
+            @Override
+            public void onResponse(@NonNull Call<STKPush> call, @NonNull Response<STKPush> response) {
+                mProgressDialog.dismiss();
+                try {
+                    if (response.isSuccessful()) {
+                        Timber.d("post submitted to API. %s", response.body());
+                    } else {
+                        Timber.e("Response %s", response.errorBody().string());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
+                mProgressDialog.dismiss();
+                Timber.e(t);
+            }
+        });
+    }
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }
