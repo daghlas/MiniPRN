@@ -25,6 +25,26 @@ android {
             )
         }
     }
+
+    //mpesa key & secret reference
+    android.buildFeatures.buildConfig = true
+    buildTypes{
+        getByName("debug") {
+            buildConfigField("String", "CONSUMER_KEY", "\"PtNddSNN2dINvkQ5jBDRgCsLzPV3OUZt\"")
+            buildConfigField("String", "CONSUMER_SECRET", "\"swKPYQdUXQ5CPTlH\"")
+        }
+    }
+
+    tasks.withType<JavaCompile>().configureEach {
+        options.isFork = true
+        options.forkOptions.jvmArgs = listOf(
+            "--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+            "--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+            "--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
+        )
+    }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -43,4 +63,25 @@ dependencies {
     implementation("com.intuit.sdp:sdp-android:1.1.0")
     //qr code scanner dependency
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    //stk push libs
+    implementation ("com.jakewharton:butterknife:10.1.0")
+    annotationProcessor ("com.jakewharton:butterknife-compiler:10.1.0")
+    implementation ("com.jakewharton.timber:timber:4.7.1")
+
+    //implementation ("com.github.jumadeveloper:networkmanager:0.0.2")
+
+    implementation ("cn.pedant.sweetalert:library:1.3")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+
+    implementation ("com.squareup.okhttp3:okhttp:3.12.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.0")
+
+    implementation ("com.google.code.gson:gson:2.8.7")
+
+    implementation ("com.squareup.okio:okio:2.1.0")
+
+    implementation ("javax.annotation:javax.annotation-api:1.3.2")
+
 }
