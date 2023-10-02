@@ -24,6 +24,7 @@
         android:layout_marginTop="@dimen/_80sdp"
         android:textSize="@dimen/_20sdp"
         android:textColor="@color/red"
+        android:fontFamily="@font/croissant_one_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kraPin"
-        app:layout_constraintVertical_bias="0.226">
+        app:layout_constraintVertical_bias="0.116">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/paymentOfTaxesPRN"
@@ -93,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
             app:cardBackgroundColor="@color/red"
             app:cardCornerRadius="@dimen/_10sdp">
 
@@ -110,7 +111,9 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_qrc"
+                        android:padding="@dimen/_7sdp"/>
 
                 </androidx.cardview.widget.CardView>
 
