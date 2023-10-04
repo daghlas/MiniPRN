@@ -30,6 +30,7 @@ public class PRNumber extends AppCompatActivity {
         });
 
         proceed = findViewById(R.id.proceed);
+        proceed.setEnabled(false);
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
