@@ -56,11 +56,28 @@ public class QRCode extends AppCompatActivity {
 
     ActivityResultLauncher <ScanOptions> barLaunch = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents() != null){
+            //capture receipt details from QR code scanned
+            String path = result.getContents();
+            String[] split = path.split(" ");
+            String amount = split[5];
+            String payBill = "572572";
+            String reference = split[11];
+
+            //Keep and post to next activity
+            Intent intent = new Intent(QRCode.this, QRPay.class);
+            intent.putExtra("amount", amount);
+            intent.putExtra("payBill", payBill);
+            intent.putExtra("reference", reference);
+            startActivity(intent);
+            finish();
+
+            //Dialogue box option
+            /*
             AlertDialog.Builder builder = new AlertDialog.Builder(QRCode.this);
             builder.setCancelable(false);
             builder.setTitle("Pay with QR Code");
             builder.setMessage(result.getContents());
-            builder.setPositiveButton("PAY", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("NEXT", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //capture receipt details from QR code scanned
@@ -84,6 +101,8 @@ public class QRCode extends AppCompatActivity {
                     dialog.dismiss();
                 }
             }).show();
+
+             */
         }
     });
 }
