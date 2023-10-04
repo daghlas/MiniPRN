@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Mini PRN</string>
     <string name="mini_prn">Mini PRN</string>
+    <string name="resend">RESEND</string>
+    <string name="finish">FINISH</string>
+    <string name="developer">Developed by DAGHLAS \n k.d_kai 2023</string>
 </resources>
