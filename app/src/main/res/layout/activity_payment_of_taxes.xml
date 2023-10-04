@@ -74,7 +74,9 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_tag"
+                        android:padding="@dimen/_7sdp"/>
 
                 </androidx.cardview.widget.CardView>
 
@@ -122,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Scan QR Code to pay your taxes"
+                    android:text="Use QR Code to pay your taxes"
                     android:textColor="@color/white" />
             </LinearLayout>
 
