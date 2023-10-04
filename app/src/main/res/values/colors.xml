@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="red">#FE0000</color>
+    <color name="status_bar">#900000</color>
 </resources>
