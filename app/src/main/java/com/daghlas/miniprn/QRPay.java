@@ -32,7 +32,7 @@ public class QRPay extends AppCompatActivity {
 
     ImageView back;
     EditText amount, payBill, accountNo, phone;
-    Button proceed;
+    Button proceed, done;
     //mpesa STKPush
     private DarajaApiClient mApiClient;
     private ProgressDialog mProgressDialog;
@@ -55,6 +55,16 @@ public class QRPay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        done = findViewById(R.id.done);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =  new Intent(QRPay.this, QRCode.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -89,6 +99,8 @@ public class QRPay extends AppCompatActivity {
                     String phone_number = phone.getText().toString();
                     String pay_amount = amount.getText().toString();
                     performSTKPush(phone_number,pay_amount);
+                    proceed.setText(R.string.resend);
+                    done.setText(R.string.finish);
                 }
             }
         });
