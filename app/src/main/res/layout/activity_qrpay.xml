@@ -61,7 +61,8 @@
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:text="Payment Details"
-                android:textSize="@dimen/_13sdp" />
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -73,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Amount"
-                    android:inputType="none"/>
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -115,18 +116,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableEnd="@drawable/ic_edit"
-                    android:hint="Mpesa Number (07xxxxxxxx)"
+                    android:hint="Enter Mpesa Number (07xxxxxxxx)"
                     android:inputType="phone"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/proceed"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_40sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:text="PROCEED"
-                android:textColor="@color/white" />
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginVertical="@dimen/_20sdp">
+
+                <Button
+                    android:id="@+id/done"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:text="CANCEL"
+                    android:textColor="@color/white" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/proceed"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="wrap_content"
+                    android:text="PROCEED"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
