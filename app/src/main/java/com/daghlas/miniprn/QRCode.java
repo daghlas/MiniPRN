@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import java.util.Objects;
+
 public class QRCode extends AppCompatActivity {
 
     ImageView back;
@@ -45,9 +47,9 @@ public class QRCode extends AppCompatActivity {
         });
     }
 
-    private void scanQRCode(){
+    private void scanQRCode() {
         ScanOptions options = new ScanOptions();
-        options.setPrompt("Press volume up button to on flash light");
+        options.setPrompt("Press volume up button to turn on flash light");
         options.setBeepEnabled(true);
         options.setOrientationLocked(true);
         options.setCaptureActivity(CaptureAct.class);
