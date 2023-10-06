@@ -1,5 +1,6 @@
 package com.daghlas.miniprn;
 
+import static android.service.controls.ControlsProviderService.TAG;
 import static com.daghlas.miniprn.Constants.BUSINESS_SHORT_CODE;
 import static com.daghlas.miniprn.Constants.CALLBACKURL;
 import static com.daghlas.miniprn.Constants.PARTYB;
@@ -7,12 +8,16 @@ import static com.daghlas.miniprn.Constants.PASSKEY;
 import static com.daghlas.miniprn.Constants.TRANSACTION_TYPE;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +27,15 @@ import android.widget.Toast;
 import com.daghlas.miniprn.Model.AccessToken;
 import com.daghlas.miniprn.Model.STKPush;
 import com.daghlas.miniprn.Services.DarajaApiClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -99,6 +113,7 @@ public class QRPay extends AppCompatActivity {
                     String phone_number = phone.getText().toString();
                     String pay_amount = amount.getText().toString();
                     performSTKPush(phone_number,pay_amount);
+                    saveRealTime();
                     proceed.setText(R.string.resend);
                     done.setText(R.string.finish);
                 }
@@ -186,4 +201,51 @@ public class QRPay extends AppCompatActivity {
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+    //database configuration method
+    public void saveRealTime(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+
+        String datePaid = Utils.getTimestamp();
+        String amountPaid =  amount.getText().toString().trim();
+        String referenceNumber =  accountNo.getText().toString().trim();
+        String phoneNumber =  phone.getText().toString().trim();
+        String description = "QR Code Payment";
+
+        List <String> data = new ArrayList<>();
+        data.add(datePaid);
+        data.add(amountPaid);
+        data.add(referenceNumber);
+        data.add(phoneNumber);
+        data.add(description);
+
+        DatabaseReference databaseReference = firebaseDatabase.getReference("Receipts");
+
+        Map <String,Object> entries = new HashMap<>();
+        entries.put("datePaid", datePaid);
+        entries.put("amountPaid", amountPaid);
+        entries.put("referenceNumber", referenceNumber);
+        entries.put("phoneNumber", phoneNumber);
+        entries.put("description", description);
+
+        databaseReference.child(referenceNumber).updateChildren(entries)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @RequiresApi(api = Build.VERSION_CODES.R)
+                    @SuppressLint("LogNotTimber")
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG,"onUploadSuccess: Successfully uploaded " + referenceNumber);
+                        //Toast.makeText(QRPay.this, "Successfully uploaded " + referenceNumber, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @SuppressLint("LogNotTimber")
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("onUploadFailure: ", e.getMessage());
+                        //Toast.makeText(QRPay.this, "Failed to uploaded " + referenceNumber, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }
