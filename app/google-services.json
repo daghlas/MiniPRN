@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "108532154982",
+    "project_id": "mini-prn",
+    "storage_bucket": "mini-prn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108532154982:android:7e7cb43cf5930bd229e3a7",
+        "android_client_info": {
+          "package_name": "com.daghlas.miniprn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR31ipEng5rFlrX7hySxqqRD3jDMnYOR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
