@@ -4,5 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="red">#FE0000</color>
+    <color name="black_light">#33000000</color>
+    <color name="red_light">#1AFE0000</color>
     <color name="status_bar">#900000</color>
 </resources>
