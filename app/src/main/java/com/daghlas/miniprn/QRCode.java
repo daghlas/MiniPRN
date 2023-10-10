@@ -21,7 +21,7 @@ import java.util.Objects;
 public class QRCode extends AppCompatActivity {
 
     ImageView back;
-    Button scanQR;
+    Button scanQR, paymentHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,15 @@ public class QRCode extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        paymentHistory = findViewById(R.id.btnHistory);
+        paymentHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(QRCode.this, PaymentHistory.class);
+                startActivity(intent);
             }
         });
 
