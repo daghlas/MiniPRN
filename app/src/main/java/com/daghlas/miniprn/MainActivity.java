@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 builder.setMessage("This application is purely a test version still under development. " +
                         "This version of the app is for a proposal objective to the KRA regarding " +
                         "streamlining of tax payment procedures by adding QR Code scanning and prompting of the " +
-                        "Safaricom STK Push Service as a payment procedure.\n\nAny similarities portrayed to the official " +
+                        "Safaricom STK Push Service as a payment procedure. STK Push from MPESA has been enabled by " +
+                        "integrating Safaricom's Lipa Na Mpesa API with Daraja for completing transactions.\n\nAny " +
+                        "similarities portrayed to the official " +
                         "KRA MService App are completely unintentional and only strive to accomplish the intended " +
                         "demonstrations for this app.\nThis app is not for commercial purposes and cannot be sold " +
                         "or reproduced without the developer's consent.\n\nDevelopers contact: \nPhone: 0723325631" +
@@ -57,6 +59,5 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
             }
         });
-
     }
 }
