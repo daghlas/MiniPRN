@@ -7,11 +7,6 @@ import static com.daghlas.miniprn.Constants.PARTYB;
 import static com.daghlas.miniprn.Constants.PASSKEY;
 import static com.daghlas.miniprn.Constants.TRANSACTION_TYPE;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -22,7 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.daghlas.miniprn.Model.AccessToken;
 import com.daghlas.miniprn.Model.STKPush;
@@ -248,4 +247,11 @@ public class QRPay extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QRPay.this, QRCode.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
+    }
 }
