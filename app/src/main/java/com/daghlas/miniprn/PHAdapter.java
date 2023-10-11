@@ -15,10 +15,12 @@ public class PHAdapter extends RecyclerView.Adapter<PHAdapter.MyViewHolder> {
 
     Context context;
     List<PHModel> phModelList;
-    public  PHAdapter(Context context, List<PHModel> phModelList){
+
+    public PHAdapter(Context context, List<PHModel> phModelList) {
         this.context = context;
         this.phModelList = phModelList;
     }
+
     @NonNull
     @Override
     public PHAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,18 +31,21 @@ public class PHAdapter extends RecyclerView.Adapter<PHAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PHAdapter.MyViewHolder holder, int position) {
-        PHModel phModel =phModelList.get(position);
+        PHModel phModel = phModelList.get(position);
         holder.prnNumber.setText(phModel.getReferenceNumber());
         holder.date.setText(phModel.getDatePaid());
         holder.amount.setText(phModel.getAmountPaid());
         holder.description.setText(phModel.getDescription());
     }
+
     @Override
     public int getItemCount() {
         return phModelList.size();
     }
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView prnNumber, date, amount, description;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             prnNumber = itemView.findViewById(R.id.prnNumber);
