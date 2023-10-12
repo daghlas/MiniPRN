@@ -65,8 +65,8 @@ public class QRCode extends AppCompatActivity {
         barLaunch.launch(options);
     }
 
-    ActivityResultLauncher <ScanOptions> barLaunch = registerForActivityResult(new ScanContract(), result -> {
-        if(result.getContents() != null){
+    ActivityResultLauncher<ScanOptions> barLaunch = registerForActivityResult(new ScanContract(), result -> {
+        if (result.getContents() != null) {
             //capture receipt details from QR code scanned
             String path = result.getContents();
             String[] split = path.split(" ");
