@@ -75,7 +75,7 @@ public class QRPay extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(QRPay.this, QRCode.class);
+                Intent intent = new Intent(QRPay.this, QRCode.class);
                 startActivity(intent);
                 finish();
             }
@@ -111,7 +111,7 @@ public class QRPay extends AppCompatActivity {
                     //Toast.makeText(QRPay.this, "Payment Successful", Toast.LENGTH_SHORT).show();
                     String phone_number = phone.getText().toString();
                     String pay_amount = amount.getText().toString();
-                    performSTKPush(phone_number,pay_amount);
+                    performSTKPush(phone_number, pay_amount);
                     saveRealTime();
                     proceed.setText(R.string.resend);
                     done.setText(R.string.finish);
@@ -146,6 +146,7 @@ public class QRPay extends AppCompatActivity {
                     mApiClient.setAuthToken(response.body().accessToken);
                 }
             }
+
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
 
@@ -153,7 +154,7 @@ public class QRPay extends AppCompatActivity {
         });
     }
 
-    public void performSTKPush(String phone_number,String pay_amount) {
+    public void performSTKPush(String phone_number, String pay_amount) {
         mProgressDialog.setMessage("Processing your request");
         mProgressDialog.setTitle("Please Wait...");
         mProgressDialog.setIndeterminate(true);
@@ -189,6 +190,7 @@ public class QRPay extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
             @Override
             public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
                 mProgressDialog.dismiss();
@@ -196,22 +198,23 @@ public class QRPay extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 
     //database configuration method
-    public void saveRealTime(){
+    public void saveRealTime() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 
         String datePaid = Utils.getTimestamp();
-        String amountPaid =  amount.getText().toString().trim();
-        String referenceNumber =  accountNo.getText().toString().trim();
-        String phoneNumber =  phone.getText().toString().trim();
+        String amountPaid = amount.getText().toString().trim();
+        String referenceNumber = accountNo.getText().toString().trim();
+        String phoneNumber = phone.getText().toString().trim();
         String description = "QR Code Payment";
 
-        List <String> data = new ArrayList<>();
+        List<String> data = new ArrayList<>();
         data.add(datePaid);
         data.add(amountPaid);
         data.add(referenceNumber);
@@ -220,7 +223,7 @@ public class QRPay extends AppCompatActivity {
 
         DatabaseReference databaseReference = firebaseDatabase.getReference("Receipts");
 
-        Map <String,Object> entries = new HashMap<>();
+        Map<String, Object> entries = new HashMap<>();
         entries.put("datePaid", datePaid);
         entries.put("amountPaid", amountPaid);
         entries.put("referenceNumber", referenceNumber);
@@ -233,7 +236,7 @@ public class QRPay extends AppCompatActivity {
                     @SuppressLint("LogNotTimber")
                     @Override
                     public void onSuccess(Void unused) {
-                        Log.d(TAG,"onUploadSuccess: Successfully uploaded " + referenceNumber);
+                        Log.d(TAG, "onUploadSuccess: Successfully uploaded " + referenceNumber);
                         //Toast.makeText(QRPay.this, "Successfully uploaded " + referenceNumber, Toast.LENGTH_SHORT).show();
                     }
                 })
