@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:text="PRN Number"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="0dp"
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:text="DATE"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="0dp"
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:text="AMOUNT"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="0dp"
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:text="DESCRIPTION"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <View
