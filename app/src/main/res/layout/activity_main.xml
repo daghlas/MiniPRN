@@ -10,21 +10,21 @@
         android:id="@+id/drawerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_drawer"
         android:layout_margin="@dimen/_10sdp"
         android:padding="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:src="@drawable/ic_drawer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mini_prn"
         android:layout_marginTop="@dimen/_80sdp"
-        android:textSize="@dimen/_20sdp"
-        android:textColor="@color/red"
         android:fontFamily="@font/croissant_one_regular"
+        android:text="@string/mini_prn"
+        android:textColor="@color/red"
+        android:textSize="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,10 +33,10 @@
         android:id="@+id/kraPin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="A011996333E"
-        android:textStyle="bold"
         android:layout_margin="@dimen/_5sdp"
+        android:text="A011996333E"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appName" />
@@ -73,8 +73,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/tax_returns"
-                        android:padding="@dimen/_7sdp"/>
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/tax_returns" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -112,8 +112,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/tax_repayment"
-                        android:padding="@dimen/_7sdp"/>
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/tax_repayment" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -150,8 +150,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/tax_compliance"
-                        android:padding="@dimen/_7sdp"/>
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/tax_compliance" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -188,8 +188,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/customs_service"
-                        android:padding="@dimen/_7sdp"/>
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/customs_service" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -226,8 +226,8 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/general_inquiries"
-                        android:padding="@dimen/_7sdp"/>
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/general_inquiries" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -262,10 +262,10 @@
                     app:cardCornerRadius="@dimen/_10sdp">
 
                     <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/taxt_handbook"
-                    android:padding="@dimen/_7sdp"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/taxt_handbook" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -298,10 +298,10 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemIconTint="@drawable/bottom_nav_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemIconTint="@drawable/bottom_nav_selector"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
