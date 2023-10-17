@@ -14,21 +14,21 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
             android:layout_margin="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/mini_prn"
             android:layout_marginTop="@dimen/_80sdp"
-            android:textSize="@dimen/_20sdp"
-            android:textColor="@color/red"
             android:fontFamily="@font/croissant_one_regular"
+            android:text="@string/mini_prn"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,10 +37,10 @@
             android:id="@+id/kraPin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A011996333E"
-            android:textStyle="bold"
             android:layout_margin="@dimen/_5sdp"
+            android:text="A011996333E"
             android:textColor="@color/black"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appName" />
@@ -62,7 +62,7 @@
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:text="Payment Details"
                 android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Amount"
-                    android:inputType="number"/>
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -88,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Paybill No."
-                    android:inputType="none"/>
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -102,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Reference/Account No."
-                    android:inputType="none"/>
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -117,15 +117,15 @@
                     android:layout_height="match_parent"
                     android:drawableEnd="@drawable/ic_edit"
                     android:hint="Enter Mpesa Number (07xxxxxxxx)"
-                    android:inputType="phone"/>
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginVertical="@dimen/_20sdp">
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/done"
@@ -138,7 +138,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/proceed"
