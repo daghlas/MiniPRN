@@ -69,18 +69,34 @@ public class QRCode extends AppCompatActivity {
         if (result.getContents() != null) {
             //capture receipt details from QR code scanned
             String path = result.getContents();
-            String[] split = path.split(" ");
-            String amount = split[5];
-            String payBill = "572572";
-            String reference = split[11];
 
-            //Keep and post to next activity
-            Intent intent = new Intent(QRCode.this, QRPay.class);
-            intent.putExtra("amount", amount);
-            intent.putExtra("payBill", payBill);
-            intent.putExtra("reference", reference);
-            startActivity(intent);
-            finish();
+            if (path.startsWith("PAY")) {
+                String[] split = path.split(" ");
+                String amount = split[5];
+                String payBill = "572572";
+                String reference = split[11];
+
+                //Keep and post to next activity
+                Intent intent = new Intent(QRCode.this, QRPay.class);
+                intent.putExtra("amount", amount);
+                intent.putExtra("payBill", payBill);
+                intent.putExtra("reference", reference);
+                startActivity(intent);
+                finish();
+            } else {
+                // Show an error message
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setIcon(R.mipmap.ic_launcher_custom);
+                builder.setTitle(R.string.app_name);
+                builder.setMessage("ERROR! \nScan only a tax payment QR Code to proceed");
+                builder.setCancelable(false);
+                builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+            }
         }
     });
 }
