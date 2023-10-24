@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName;
 public class AccessToken {
 
     /**
-    *access_token: e7jeOJzAlT6zOWO52mbGmIbMU8sG
-    * <p>
+     * access_token: e7jeOJzAlT6zOWO52mbGmIbMU8sG
+     * <p>
      * expires_in: 3599
      * <p>
-    *SnR2Z0h3b1l3YW8ydmd2NWJDajVBOWdxQ0dyUUtGREk6anB5QXE5OUFpUUNKVDFicQ
-    */
+     * SnR2Z0h3b1l3YW8ydmd2NWJDajVBOWdxQ0dyUUtGREk6anB5QXE5OUFpUUNKVDFicQ
+     */
 
     @SerializedName("access_token")
     @Expose
