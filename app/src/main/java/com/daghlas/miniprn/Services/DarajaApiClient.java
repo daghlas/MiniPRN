@@ -68,6 +68,7 @@ public class DarajaApiClient {
         retrofit = builder.build();
         return retrofit;
     }
+
     public STKPushService mpesaService() {
         return getRestAdapter().create(STKPushService.class);
     }
