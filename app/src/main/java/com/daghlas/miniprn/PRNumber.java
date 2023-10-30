@@ -37,8 +37,6 @@ public class PRNumber extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(PRNumber.this, Receipt.class);
-                //startActivity(intent);
                 AlertDialog.Builder builder = new AlertDialog.Builder(PRNumber.this);
                 builder.setTitle(R.string.app_name);
                 builder.setIcon(R.mipmap.ic_launcher_custom);
