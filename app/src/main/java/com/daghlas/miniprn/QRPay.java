@@ -236,7 +236,6 @@ public class QRPay extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "onUploadSuccess: Successfully uploaded " + referenceNumber);
-                        //Toast.makeText(QRPay.this, "Successfully uploaded " + referenceNumber, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -244,7 +243,6 @@ public class QRPay extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w("onUploadFailure: ", e.getMessage());
-                        //Toast.makeText(QRPay.this, "Failed to uploaded " + referenceNumber, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
