@@ -108,7 +108,6 @@ public class QRPay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validatePhoneNumber()) {
-                    //Toast.makeText(QRPay.this, "Payment Successful", Toast.LENGTH_SHORT).show();
                     String phone_number = phone.getText().toString();
                     String pay_amount = amount.getText().toString();
                     performSTKPush(phone_number, pay_amount);
@@ -149,7 +148,7 @@ public class QRPay extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-
+                //throw exception
             }
         });
     }
