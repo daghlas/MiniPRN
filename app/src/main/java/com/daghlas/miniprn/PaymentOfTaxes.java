@@ -31,7 +31,6 @@ public class PaymentOfTaxes extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PaymentOfTaxes.this, PRNumber.class);
                 startActivity(intent);
-
             }
         });
 
@@ -40,7 +39,6 @@ public class PaymentOfTaxes extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PaymentOfTaxes.this, QRCode.class);
                 startActivity(intent);
-
             }
         });
 
