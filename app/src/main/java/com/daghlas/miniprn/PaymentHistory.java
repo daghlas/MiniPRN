@@ -57,17 +57,6 @@ public class PaymentHistory extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     PHModel phModel = dataSnapshot.getValue(PHModel.class);
                     phModelList.add(phModel);
-                    /*
-                    if (adapter.getItemCount() == 0) {
-                        recyclerView.setVisibility(View.INVISIBLE);
-                        text.setVisibility(View.VISIBLE);
-                        text2.setVisibility(View.VISIBLE);
-                    } else {
-                        recyclerView.setVisibility(View.VISIBLE);
-                        text.setVisibility(View.INVISIBLE);
-                        text2.setVisibility(View.INVISIBLE);
-                    }
-                     */
                 }
                 adapter.notifyDataSetChanged();
             }
