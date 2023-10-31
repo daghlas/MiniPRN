@@ -93,7 +93,7 @@ public class QRCode extends AppCompatActivity {
                 builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                        dialog.dismiss();//close dialog builder
                     }
                 }).show();
             }
