@@ -13,7 +13,8 @@ public class PHModel {
     }
 
     public PHModel() {
-
+        //default constructor, also no-argument constructor, also  empty constructor
+        //Empty constructor for Firebase deserialization
     }
 
     public String getDatePaid() {
