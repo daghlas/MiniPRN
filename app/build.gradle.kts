@@ -31,8 +31,8 @@ android {
     android.buildFeatures.buildConfig = true
     buildTypes{
         getByName("debug") {
-            buildConfigField("String", "CONSUMER_KEY", "\"JtvgHwoYwao2vgv5bCj5A9gqCGrQKFDI\"")
-            buildConfigField("String", "CONSUMER_SECRET", "\"jpyAq99AiQCJT1bq\"")
+            buildConfigField("String", "CONSUMER_KEY", "\"K8cebSIm2PDs75hnPk2ThoHqJbpkdOJA\"")
+            buildConfigField("String", "CONSUMER_SECRET", "\"GmOBBLQngzRFq56y\"")
         }
     }
 
